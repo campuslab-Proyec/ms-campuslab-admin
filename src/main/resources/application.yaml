@@ -1,0 +1,29 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: ms-campuslab-admin
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://login.microsoftonline.com/${AZURE_TENANT_ID:aff2eb38-d6cf-4220-8527-53f1cb6aed15}/v2.0
+          audiences:
+            - 8d19bb45-1842-43ce-b76c-4513b979df81
+            - api://8d19bb45-1842-43ce-b76c-4513b979df81
+
+# API de gestión de RabbitMQ (para listar colas, exchanges y bindings)
+rabbitmq:
+  management:
+    url: ${RABBITMQ_MANAGEMENT_URL:http://localhost:15672}
